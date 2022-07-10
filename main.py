@@ -29,6 +29,23 @@ class HomeWindow:
     self.button = Button(self.frame, text = "START")
     self.button.grid(row = 3)
 
+    #Button that shows '?' that redirects to a pop up page that helps with the quiz.
+    self.help = Button(self.frame, text = " ? ", command = self.to_help)
+    self.help.grid(row = 4, pady  = 50)
+
+    
+  #Function that makes the pop up window and is linked to the above code.
+  def to_help(self):
+    
+    toplevel = Toplevel(root)
+    
+    toplevel.geometry("500x500")
+
+    toplevel.title("Help")
+    
+    self.helptitle = Label(toplevel, text = "Help", font = ("30"))
+    self.helptitle.grid(row = 0, padx = 80, pady = 30)
+
     
   #Function that stores names inputted from users.
   def stored_names(self):
