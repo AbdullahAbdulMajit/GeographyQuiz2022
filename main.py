@@ -42,9 +42,6 @@ class HomeWindow:
     toplevel.geometry("500x500")
 
     toplevel.title("Help")
-    
-    self.helptitle = Label(toplevel, text = "Help", font = ("30"))
-    self.helptitle.grid(row = 0, padx = 80, pady = 30)
 
     
   #Function that stores names inputted from users.
