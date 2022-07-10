@@ -28,7 +28,14 @@ class HomeWindow:
     #Button that says START allowing people to move to the next window when clicked.
     self.button = Button(self.frame, text = "START")
     self.button.grid(row = 3)
+
     
+  #Function that stores names inputted from users.
+  def stored_names(self):
+    username = self.name.get()
+    names.append(username) #stores input to the name list variable
+    print(names)
+    self.frame.destroy()
 
 #### MAIN ####
 #This makes this file the starter file.
@@ -51,5 +58,3 @@ if __name__ == "__main__":
     #To keeps the window on it must be on loop.
     root.mainloop() 
 
-
-    
