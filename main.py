@@ -4,6 +4,12 @@ from tkinter import *
 #VARIABLES - Objects assigned to a variable can be referred by the variable.
 names = []
 
+global questions
+questions =  {
+  "q1" : ["Is the Vatican City is the smallest country?", 'Yes', 'No', 1],
+  "q2" : ["Is Mount Fuji the tallest mountain in the world", 'Yes', 'No', 2]
+}
+
 #This is my Home window component, users will be directed to this window at launch.
 class HomeWindow:
 
@@ -15,7 +21,7 @@ class HomeWindow:
 
     #This is where I'll be setting up my heading for my program.
     self.title = Label(self.frame, text = "Welcome to my Geography Quiz!⁽²⁰²²⁾", font = ("30"))
-    self.title.grid(row = 0, padx = 80, pady = 30)
+    self.title.grid(row = 0, padx = 100, pady = 30)
 
     #Adding an extra label to give tips on how to proceed with the porgram.
     self.info = Label(self.frame, text = "TIP: To play the game enter your name below and click START.\nFor instructions on how to play the game, click '?'.")
@@ -26,7 +32,7 @@ class HomeWindow:
     self.name.grid(row = 2, pady = 20)
 
     #Button that says START allowing people to move to the next window when clicked.
-    self.button = Button(self.frame, text = "START")
+    self.button = Button(self.frame, text = "START", command = self.question_window)
     self.button.grid(row = 3)
 
     #Button that shows '?' that redirects to a pop up page that helps with the quiz.
@@ -39,9 +45,17 @@ class HomeWindow:
     
     toplevel = Toplevel(root)
     
-    toplevel.geometry("500x500")
+    toplevel.geometry("500x300")
 
-    toplevel.title("Help")
+    toplevel.resizable(False, False)
+
+    toplevel.title("HELP PAGE")
+    
+    self.helptitle = Label(toplevel, text = "NEED HELP?", font = ("30"))
+    self.helptitle.grid(row = 0, padx = 185, pady = 50)
+
+    self.helpinfo = Label(toplevel, text = "- Read the  question carefully.\n\n- Choose from the 'Yes' option if you agree or 'No' option if you disagree\n\n- Have fun!")
+    self.helpinfo.grid(row = 1)
 
     
   #Function that stores names inputted from users.
@@ -49,7 +63,31 @@ class HomeWindow:
     username = self.name.get()
     names.append(username) #stores input to the name list variable
     print(names)
+    
+
+  def question_window(self):
     self.frame.destroy()
+    self.question_window = Questions(root)
+    
+
+class Questions:
+
+  def __init__(self, parent):
+
+    self.var1 = IntVar()
+
+    self.frame = Frame(parent)
+    self.frame.grid()
+
+    self.question = Label(self.frame, text = questions.get("q1")[0])
+    self.question.grid(row = 1)
+
+    self.button1 = Radiobutton(self.frame, text = questions.get("q1")[1], value = 1, indicator = 0, variable = self.var1)
+    self.button1.grid(row = 2, column = 1)
+
+    self.button2 = Radiobutton(self.frame, text = questions.get("q1")[2], value = 2, indicator = 0, variable = self.var1)
+    self.button2.grid(row = 2, column = 2)
+
 
 #### MAIN ####
 #This makes this file the starter file.
@@ -72,3 +110,5 @@ if __name__ == "__main__":
     #To keeps the window on it must be on loop.
     root.mainloop() 
 
+
+    
